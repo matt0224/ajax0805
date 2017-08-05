@@ -1,0 +1,33 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+<script>
+
+function test1(){
+   $.ajax({
+	  type:"get",
+	  async:false, //同步
+	  url:"jsonp2.php",
+	  dataType:"jsonp",  //通訊協定
+	  jsonp:"mycallback", //等於呼叫aaa請他把參數傳遞回來 這句話一定要講
+	  jsonCallback:"myfunc",//前製做
+	 // jsonCallback:"aaa",
+	  success:function(data){   //這邊是json
+		  console.log(data.name); //結果從json傳回來
+		  $("#here").html(data.name);
+	  },
+	  error:function(){
+		  alert('error')
+	  }
+   });
+   
+}
+	//setInterval(test1,1000);
+	
+	function myfunc(){//前製做
+		console.log('got it');
+	}
+</script>
+
+<button onclick="test1()">test1</button>
+<div id="here"></div>

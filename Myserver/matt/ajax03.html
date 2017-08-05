@@ -1,0 +1,30 @@
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script  src="apis/ajaxfileupload.js"></script>
+
+
+<input type="file" name="uploadFile" id="uploadFile">
+<button onclick="upload()">upload</button>
+<script >
+ 
+	   $("#uploadFile").ajaxfileupload({
+		   action:'matt03.php',
+		   valid_extensions:['png','jpg'],
+	   onComplete: function(response) {
+	     console.log('custom handler for file:');
+	   },
+	   onStart: function() {
+	     console.log('start')
+	   },
+	   onCancel: function() {
+	     console.log('no file selected');
+	   }
+	  });
+   
+
+</script>
+
+
+
+
+  
+

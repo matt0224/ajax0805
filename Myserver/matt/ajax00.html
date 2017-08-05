@@ -1,0 +1,21 @@
+<script>
+ //javascript object
+ var member={
+	id:"123",
+	account:"matt",
+	realname:"¸êµ¦",
+	age:51,
+	gender:false,
+	language:[
+		"java","jsp","ios"
+	]
+ };
+
+ console.log(member.account);
+ 
+ var memberString=JSON.stringify(member);
+ console.log(memberString);
+ 
+ var memberObj=JSON.parse(memberString);
+ console.log(memberObj.realname);
+</script>

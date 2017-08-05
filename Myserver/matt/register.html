@@ -1,0 +1,62 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<form action="reg.php" onsubmit="return ckForm()">
+   Account:<input type="text" name="account" id="account" onblur="ckAccount()"/> <br/>
+   <span id="mesg"></span>
+   Password:<input type="password" name="passwd" id="passwd"><br/>
+   Realname:<input type="text" name="realname" ><br/>
+   <input type="submit" value="register" />
+</form>
+<script>
+  var isOK=false;
+  function ckAccount(){
+	  console.log("ckAccount");
+	  var accountVal=$("#account").val();
+	  var params={account:accountVal}; //k:v   
+	  $.get("ckAccount.php",params,function(data){
+   // $.get("http://10.21.100.66:1717/brad/ckAccount.php",params,function(data){
+		 var jsonObj=JSON.parse(data);    //這邊跨網域ajax預設不行 所以只能這個網址可用
+		 if(jsonObj.result!=null&&jsonObj.result==0){   //手上拿json物件了
+			 console.log("OK");
+		 $("#mesg").html('此帳號可以使用');
+		 isOK=true;
+		 }else{
+			 console.log("xx");
+			 $("#mesg").html('<font color="red">帳號重複</font>');
+			 isOK=false;
+		 }
+	  });
+  }
+  
+  function ckAccountV2(){
+	  console.log("ckAccountV2");
+	  var accountVal=$("#account").val();
+	  var params={account:accountVal};
+	  $.ajax({
+		  async:false,
+		  data:params,
+		  url:"ckAccount.php",
+		  success:function(data,status,xhr){
+			  var jsonObj=JSON.parse(data); 
+				 if(jsonObj.result!=null&&jsonObj.result==0){   //手上拿json物件了
+					 console.log("OK");
+				 $("#mesg").html('此帳號可以使用');
+				 isOK=true;
+				 }else{
+					 console.log("xx");
+					 $("#mesg").html('<font color="red">帳號重複</font>');
+					 isOK=false;
+				 }
+		  }
+	  });
+  }
+  
+  function ckForm(){    //確認按鈕不會sumit
+	  console.log("before ckForm");
+	  ckAccount(); //送出之前在檢察
+	  console.log("after ckForm");
+	  
+	  return isOK;
+  }
+
+</script>

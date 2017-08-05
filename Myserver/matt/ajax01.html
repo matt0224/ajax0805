@@ -1,0 +1,31 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+
+<button onclick="test012()">TEST</button>
+<div id="here"></div>
+<script>
+   function test012() {
+	$.ajax({
+		url:"ajax01.php",
+		success:function(result,status,xhr){//第二
+			console.log("OK"+result+":"+xhr.readyState);
+		
+			$("#here").html(result);
+		},
+		error:function(xhr,status,error){  //第二
+			console.log("XX");
+		},
+		beforeSend:function(xhr){  //第一
+			console.log("beforeSend:"+xhr.readyState)
+		},
+		//最後都要在這行才執行 
+		complete:function(xhr,status){
+			console.log("complete: "+xhr.status+":"+status);
+			console.log("complete: "+xhr.responseText);
+		},  //全部的都要成功再執行
+		
+	});
+}
+</script>

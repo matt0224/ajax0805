@@ -1,0 +1,24 @@
+<script>
+ 	function myFunc(obj){
+		alert('ok');
+	}
+            //php裡面的code呼叫這邊的code  存取遠端的資料
+</script>
+
+<script src="http://10.21.200.66:1717/matt/jsonp1.php">
+//遠端的程式帶過來
+</script>
+
+
+
+
+<script>
+    function test1(){
+    	var s=document.cerateElement("scipt");
+    	s.src="http://10.21.200.66:1717/matt/jsonp1.php?where="+Where;
+    	document.body.appendChild(s);
+    } 
+  
+</script>
+<button id="test1('here4')">test1</button>
+<div id="here"></div>

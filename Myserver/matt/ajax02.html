@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<head>
+<button onclick="test021()" >test2</button>
+<div id="here"></div>
+<script>
+   function test2() {
+	   $.post("ajax02.php",
+			   {
+				  account:"matt",
+				  passwd:"123456"
+			   },
+			   function(data,status){
+				 console.log(xhr.status)
+		         console.log(data+":"+status);
+	           }
+	  ); 
+}
+   
+     function test021(){
+    	 $.ajax({
+    		 url:"ajax02.php",
+    		 type:"POST",
+    		 data:{
+				  account:"matt",
+				  passwd:"123456"
+			   },
+			  complete:function(xhr,status){
+				  console.log(status+":");
+					
+			  } 
+    			 
+    	 });
+     }
+</script>
+</html>
